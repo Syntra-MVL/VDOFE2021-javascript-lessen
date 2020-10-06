@@ -35,17 +35,36 @@ const printTablesOf = function(endNumber, multiplier) {
 
 // console.log(Math.floor(Math.random()*11));
 
-const guessNumber = function() {
-    const randomNumber = Math.floor(Math.random() * 11);
+const promptInt = function(question) {
+    let guessString = prompt(question);
+    let guessNumber = parseInt(guessString);
 
-    let guess = prompt('Raden:');
-    console.log(guess);
-
-    while (guess != randomNumber) {
-        guess = prompt('Raden:');
+    while (Number.isNaN(guessNumber)) {
+        guessString = prompt('Geen geldig nummer. \n' + question);
+        guessNumber = parseInt(guessString);
     }
 
-    alert('Goed zo!');
+    return guessNumber;
 }
 
-guessNumber();
+const guessNumber = function(maxGuesses) {
+    const maxRandomNumber = promptInt('Max random number:');
+    const randomNumber = Math.floor(Math.random() * (maxRandomNumber + 1));
+    let questionGuess = 'Raad een nummer tussen 0 en ' + maxRandomNumber + ':';
+    let guessNumber = promptInt(questionGuess);
+    let guessCount = 1;
+
+    while (guessNumber !== randomNumber && guessCount < maxGuesses) {
+        guessNumber = promptInt(questionGuess);
+        guessCount++;
+    }
+
+    if (guessNumber === randomNumber) {
+        alert('Goed zo!');
+    } else {
+        alert('Jammer, het getal was ' + randomNumber);
+    }
+}
+
+guessNumber(5);
+
