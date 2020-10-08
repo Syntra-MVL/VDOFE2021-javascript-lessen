@@ -47,8 +47,7 @@ const promptInt = function(question) {
     return guessNumber;
 }
 
-const guessNumber = function(maxGuesses) {
-    const maxRandomNumber = promptInt('Max random number:');
+const guessNumber = function(maxGuesses, maxRandomNumber) {
     const randomNumber = Math.floor(Math.random() * (maxRandomNumber + 1));
     let questionGuess = 'Raad een nummer tussen 0 en ' + maxRandomNumber + ':';
     let guessNumber = promptInt(questionGuess);
@@ -61,10 +60,57 @@ const guessNumber = function(maxGuesses) {
 
     if (guessNumber === randomNumber) {
         alert('Goed zo!');
+        return true;
     } else {
         alert('Jammer, het getal was ' + randomNumber);
+        return false;
     }
 }
 
-guessNumber(5);
+const guessNumberCompetition = function() {
+    const name = prompt('What is your name?');
+    const numberOfGames = promptInt('How many games will you play?');
+    const maxRandomNumber = promptInt('Max random number:');
+    const maxGuesses = promptInt('How many guesses can you make?');
 
+    const $playerName = document.getElementById('player-name');
+    const $playerScore = document.getElementById('player-score');
+    const $aiScore = document.getElementById('ai-score');
+    const $message = document.getElementById('message');
+
+    $playerName.innerText = name;
+
+    let playerScore = 0;
+    let aiScore = 0;
+    let gameOver = false;
+    
+    while (!gameOver) {
+        const playerWins = guessNumber(maxGuesses, maxRandomNumber);
+        if (playerWins) {
+            playerScore++;
+        } else {
+            aiScore++;
+        }
+
+        // alert(`AI: ${aiScore} | ${name}: ${playerScore}`);
+
+        $aiScore.innerText = aiScore;
+        $playerScore.innerText = playerScore;
+
+        gameOver = playerScore * 2 > numberOfGames || aiScore * 2 > numberOfGames;
+    }
+
+    let message;
+
+    if (playerScore === aiScore) {
+        message = 'TIE';
+    } else if (playerScore < aiScore) {
+        message = 'AI rules!!';
+    } else {
+        message = name + ' won!';
+    }
+
+    $message.innerText = message;
+}
+
+guessNumberCompetition();
