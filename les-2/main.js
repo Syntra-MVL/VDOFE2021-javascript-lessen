@@ -48,7 +48,7 @@ const promptInt = function(question) {
 }
 
 const guessNumber = function(maxGuesses, maxRandomNumber) {
-    const randomNumber = Math.floor(Math.random() * (maxRandomNumber + 1));
+    const randomNumber = Math.floor(Math.random() * (maxRandomNumber + 1)); // random number between 0 and maxRandomNumber
     let questionGuess = 'Raad een nummer tussen 0 en ' + maxRandomNumber + ':';
     let guessNumber = promptInt(questionGuess);
     let guessCount = 1;
@@ -73,12 +73,12 @@ const guessNumberCompetition = function() {
     const maxRandomNumber = promptInt('Max random number:');
     const maxGuesses = promptInt('How many guesses can you make?');
 
-    const $playerName = document.getElementById('player-name');
-    const $playerScore = document.getElementById('player-score');
-    const $aiScore = document.getElementById('ai-score');
-    const $message = document.getElementById('message');
+    // const $playerName = document.getElementById('player-name');
+    // const $playerScore = document.getElementById('player-score');
+    // const $aiScore = document.getElementById('ai-score');
+    // const $message = document.getElementById('message');
 
-    $playerName.innerText = name;
+    // $playerName.innerText = name;
 
     let playerScore = 0;
     let aiScore = 0;
@@ -92,12 +92,15 @@ const guessNumberCompetition = function() {
             aiScore++;
         }
 
-        // alert(`AI: ${aiScore} | ${name}: ${playerScore}`);
+        alert(`AI: ${aiScore} | ${name}: ${playerScore}`);
+        alert('AI: ' + aiScore + ' | ' + name + ': ' + playerScore);
 
-        $aiScore.innerText = aiScore;
-        $playerScore.innerText = playerScore;
+        // $aiScore.innerText = aiScore;
+        // $playerScore.innerText = playerScore;
 
-        gameOver = playerScore * 2 > numberOfGames || aiScore * 2 > numberOfGames;
+        gameOver = playerScore * 2 > numberOfGames 
+            || aiScore * 2 > numberOfGames 
+            || aiScore + playerScore === numberOfGames; // check if player or ai has a higher score than half of numberOfGames
     }
 
     let message;
@@ -110,7 +113,8 @@ const guessNumberCompetition = function() {
         message = name + ' won!';
     }
 
-    $message.innerText = message;
+    alert(message);
+    // $message.innerText = message;
 }
 
 guessNumberCompetition();
