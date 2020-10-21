@@ -19,6 +19,8 @@ console.log(button);
 const buttonClicked = function() {
     console.log('button clicked');
     console.log(input.value);
+
+    // h1.textContent = input.value';
 }
 
 button.addEventListener('click', buttonClicked);
