@@ -7,12 +7,18 @@
 </head>
 <body>
     <h1>Guessing Game</h1>
+    <h2>Score:</h2>
+    <p>Player: <span id="player-score">0</span></p>
+    <p>AI: <span id="ai-score">0</span></p>
+    <p>Guesses: <span id="guess-count">0</span></p>
     <div>
         <input id="guess-input" type="number">
         <button id="guess-btn">Guess</button>
     </div>
 
     <p id="guess-msg"></p>
+
+    <div><button id="restart-btn">Restart</button></div>
     <script src="guess.js"></script>
 </body>
 </html>
