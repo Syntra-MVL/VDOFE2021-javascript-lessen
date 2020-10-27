@@ -11,8 +11,13 @@
   </head>
   <body>
     <div id="rps-container" style="display: none">
-      <h3 id="rps-msg">Kies blad, steen of schaar</h3>
+      <h1>Best of <span id="rps-game-count">5</span></h1>
+      <ul>
+        <li>Player score: <span id="rps-player-score">0</span></li>
+        <li>AI score: <span id="rps-ai-score">0</span></li>
+      </ul>
       <div>
+        <label for="rps-input" id="rps-msg">Kies blad, steen of schaar</label>
         <input id="rps-input" type="text" />
         <button id="rps-btn" disabled="disabled">Select</button>
       </div>
@@ -21,7 +26,10 @@
       </div>
     </div>
     <div id="com-container">
-      <button id="com-start-btn">Show game</button>
+      <h1 id="com-msg"></h1>
+      <label for="com-input">Tot hoeveel wil je spelen?</label>
+      <input id="com-input" type="number" />
+      <button id="com-start-btn" disabled="disabled">Start competition</button>
     </div>
 
     <script src="main.js"></script>
