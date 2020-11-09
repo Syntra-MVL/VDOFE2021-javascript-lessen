@@ -10,7 +10,7 @@ function sumNumbers() {
   // return the sum value of all the numbers
 }
 
-function printSum() {
+function printSum(sum) {
   // print the sum value of all the numbers
 }
 
@@ -18,7 +18,7 @@ function multiplyNumbers() {
   // return the product of all the numbers
 }
 
-function printProduct() {
+function printProduct(product) {
   // print the product of all the numbers
 }
 
@@ -27,11 +27,13 @@ function printNumberCount() {
 }
 
 function addNumberInput() {
-  // add a number input
+  //# add a number input
+  // do not forget event listeners
 }
 
 function removeNumberInput(event) {
-  // remove a number input
+  //# remove a number input
+  // htmlELement.remove()
 }
 
 // add event listeners
