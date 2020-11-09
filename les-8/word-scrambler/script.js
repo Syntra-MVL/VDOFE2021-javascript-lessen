@@ -14,27 +14,21 @@ function getUserInput() {
 }
 
 function textToWordArray(text) {
-  //return array of words
+  // return array of words
+  // text.split(' ');
 }
 
 function getRandomNumber(max) {
-  //return random number between 0 and max (including 0 and excluding max)
+  // return random number between 0 and max (including 0 and excluding max)
 }
 
 function scrambleArray(oldArray) {
-  //return scrambled array
+  // return scrambled array
 }
 
 function scrambleText(text) {
   // return scrambled text
-}
-
-function onClickScramble() {
-  // update textContent of resultContainer
-}
-
-function realTimeScramble(event) {
-  //## update textContent of resultContainer realtime
+  // array.join(' ');
 }
 
 function getWordCount(array) {
@@ -55,9 +49,14 @@ function updateLetterCount(letterCount) {
 
 function updateCounts(event) {
   //# update Word Count and Letter Count
-  let currentText = this.value;
-  // this when function is executed by event => event.target
-  // this.value == event.target.value
+}
+
+function onClickScramble() {
+  // update textContent of resultContainer
+}
+
+function realTimeScramble(event) {
+  //## update textContent of resultContainer realtime
 }
 
 //add click event listener to submitBtn
