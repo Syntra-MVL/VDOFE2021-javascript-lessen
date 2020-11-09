@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+      .number-input:not(:first-of-type){
+        margin-top: 1rem;
+      }
+    </style>
+</head>
+<body>
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Calculator
+            </h1>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div id="input-container" class="container">
+      <div class="field has-addons number-input-group">
+        <div class="control">
+          <input class="input number-input" type="number" step="1" value="0">
+        </div>
+        <div class="control">
+          <a class="button is-danger delete-number-input">X</a>
+        </div>
+      </div>
+      <div class="field has-addons number-input-group">
+        <div class="control">
+          <input class="input number-input" type="number" step="1" value="0">
+        </div>
+        <div class="control">
+          <a class="button is-danger delete-number-input">X</a>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="margin-top: 1rem; margin-bottom: 1rem;">
+        <button id="sum-submit-btn" class="button is-info">Calculate Sum</button>
+        <button id="product-submit-btn" class="button is-info">Calculate Product</button>
+        <button id="add-input-btn" class="button is-info">Add Input</button>
+        <p class="is-pulled-right">Numbers: <span id="number-count-container">2</span></p>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-content">
+              <p>The sum of all numbers is: <span id="sum-result-container">0</span></p>
+              <p>The product of all numbers is: <span id="product-result-container">0</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="script.js"></script>
+</body>
+</html>

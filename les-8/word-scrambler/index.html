@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Word scrambler</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+<section class="hero is-primary">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Word scrambler
+            </h1>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <textarea id="user-input" class="textarea" rows="10">Er was eens een website</textarea>
+    </div>
+    <div class="container" style="margin-top: 1rem; margin-bottom: 1rem;">
+        <button id="submit-btn" class="button is-info">Scramble</button>
+        <p class="is-pulled-right">Letters: <span id="letter-count">0</span></p>
+        <p class="is-pulled-right" style="margin-right:1rem;">Words: <span id="word-count">0</span></p>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div id="result-container" class="card-content">
+            </div>
+        </div>
+    </div>
+</section>
+<script src="script.js"></script>
+</body>
+</html>
