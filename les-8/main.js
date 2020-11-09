@@ -4,6 +4,8 @@ const $tryContainer = document.getElementById('tries-container');
 const $winnerMessageContainer = document.getElementById(
   'winner-message-container',
 );
+const $solutionContainer = document.getElementById('solution-container');
+const $inputs = document.getElementsByClassName('try-input');
 
 const mastermindState = {
   solution: null,
@@ -25,13 +27,16 @@ const generateSolution = function () {
 };
 
 const getGuess = function () {
-  const $inputs = document.getElementsByClassName('try-input');
-
   let guess = [];
   for (let i = 0; i < 5; i++) {
-    guess.push(parseInt($inputs[i].value));
+    const inputVal = parseInt($inputs[i].value);
+
+    if (isNaN(inputVal) || inputVal < 0 || inputVal > 4) {
+      return false;
+    }
+
+    guess.push(inputVal);
   }
-  console.log(guess);
 
   return guess;
 };
@@ -89,42 +94,36 @@ const checkCorrectNumber = function (solution, guess, correctNumberAndPlace) {
   return correctNumber - correctNumberAndPlace;
 };
 
-const playMastermind = function () {
-  // const solution = generateSolution();
-  //
-  // let correctNumberAndPlace = 0;
-  // let correctNumber = 0;
-  // let numberOfGuesses = 0;
-  //
-  // while (correctNumberAndPlace < 5 && numberOfGuesses < 3) {
-  //   const guess = askGuess();
-  //   numberOfGuesses++;
-  //   console.log(guess);
-  //   correctNumberAndPlace = checkCorrectNumberAndPlace(solution, guess);
-  //   correctNumber = checkCorrectNumber(solution, guess, correctNumberAndPlace);
-  //   alert(
-  //     `Your ${numberOfGuesses}th guess was: ${guess}
-  // ${correctNumber} numbers are correct but not in the right spot
-  // ${correctNumberAndPlace} numbers are correct and in the right spot`,
-  //   );
-  // }
-  //
-  //   if (correctNumberAndPlace === 5) {
-  //     alert('Well done!! You guessed the code.');
-  //   } else {
-  //     alert('You lose!, the code was: ' + solution);
-  //   }
+const endGame = function (message) {
+  $winnerMessageContainer.firstElementChild.textContent = message;
+  $winnerMessageContainer.classList.remove('dont-show');
+  $solutionContainer.classList.remove('hidden');
+  $tryBtn.disabled = 'disabled';
 };
 
 const initMastermind = function () {
   mastermindState.solution = generateSolution();
   $winnerMessageContainer.classList.add('dont-show');
+  $solutionContainer.classList.add('hidden');
+  $tryBtn.disabled = '';
+
+  for (let i = 0; i < 5; i++) {
+    $inputs[i].value = '';
+  }
 
   $tryContainer.innerHTML = '';
 };
 
 const makeGuess = function () {
   const guess = getGuess();
+
+  if (guess === false) {
+    $tryBtn.textContent = 'Incorrect input, try again';
+    return;
+  } else {
+    $tryBtn.textContent = 'Try';
+  }
+
   const correctNumberAndPlace = checkCorrectNumberAndPlace(
     mastermindState.solution,
     guess,
@@ -140,13 +139,9 @@ const makeGuess = function () {
   writeGuess(guess, correctNumberAndPlace, correctNumber);
 
   if (correctNumberAndPlace === 5) {
-    $winnerMessageContainer.firstElementChild.textContent =
-      'You won, try again?';
-    $winnerMessageContainer.classList.remove('dont-show');
+    endGame('You won, try again?');
   } else if (mastermindState.guessCount === 3) {
-    $winnerMessageContainer.firstElementChild.textContent =
-      'You lost, try again?';
-    $winnerMessageContainer.classList.remove('dont-show');
+    endGame('You lost, try again?');
   }
 };
 
