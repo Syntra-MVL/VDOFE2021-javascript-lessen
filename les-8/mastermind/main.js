@@ -103,6 +103,7 @@ const endGame = function (message) {
 
 const initMastermind = function () {
   mastermindState.solution = generateSolution();
+  mastermindState.guessCount = 0;
   $winnerMessageContainer.classList.add('dont-show');
   $solutionContainer.classList.add('hidden');
   $tryBtn.disabled = '';
