@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hangman</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">Hangman</h1>
+        </div>
+      </div>
+    </section>
+    <section class="columns">
+      <aside class="column">
+        <div id="letter-container">
+          <div data-letter="a" class="letter">A</div>
+          <div data-letter="b" class="letter">B</div>
+          <div data-letter="c" class="letter">C</div>
+          <div data-letter="d" class="letter">D</div>
+          <div data-letter="e" class="letter">E</div>
+          <div data-letter="f" class="letter">F</div>
+          <div data-letter="g" class="letter">G</div>
+          <div data-letter="h" class="letter">H</div>
+          <div data-letter="i" class="letter">I</div>
+          <div data-letter="j" class="letter">J</div>
+          <div data-letter="k" class="letter">K</div>
+          <div data-letter="l" class="letter">L</div>
+          <div data-letter="m" class="letter">M</div>
+          <div data-letter="n" class="letter">N</div>
+          <div data-letter="o" class="letter">O</div>
+          <div data-letter="p" class="letter">P</div>
+          <div data-letter="q" class="letter">Q</div>
+          <div data-letter="r" class="letter">R</div>
+          <div data-letter="s" class="letter">S</div>
+          <div data-letter="t" class="letter">T</div>
+          <div data-letter="u" class="letter">U</div>
+          <div data-letter="v" class="letter">V</div>
+          <div data-letter="w" class="letter">W</div>
+          <div data-letter="x" class="letter">X</div>
+          <div data-letter="y" class="letter">Y</div>
+          <div data-letter="z" class="letter">Z</div>
+        </div>
+      </aside>
+      <main class="column is-three-quarters">
+        <section id="image-container">
+          <img id="image" src="images/hangman01.png" alt="" />
+        </section>
+        <section id="solution-container">
+          <div class="solution-letter"></div>
+        </section>
+        <section id="win-lose-container">You won!</section>
+      </main>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
