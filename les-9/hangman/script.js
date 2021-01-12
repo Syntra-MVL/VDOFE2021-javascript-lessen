@@ -51,6 +51,11 @@ const randomWords = [
   'prospect',
 ];
 
+const $letterContainer = document.getElementById('letter-container');
+const $hangManImage = document.getElementById('image');
+const $solutionContainer = document.getElementById('solution-container');
+const $winLoseContainer = document.getElementById('win-lose-container');
+
 const gameState = {
   word: [],
   hangman: 1,
@@ -59,30 +64,94 @@ const gameState = {
   lost: false,
 };
 
-// reset
-// > select random word
-// > generate correct amount of .solution-letter inside solution-container
-//    > empty for now
-// > remove all failed and success classes from .letter elements
-// > update #image src > images/hangman01.png
+function getRandomWord() {
+  const randomIndex = Math.floor(Math.random() * randomWords.length);
+  return randomWords[randomIndex].split('');
+}
 
-// game turn
-//  > on letter click
-//    > check if letter was not clicked before
-//      > if true > do nothing
-//      > if false
-//        > check if letter is in word
-//          > if false
-//            > add failed class to letter
-//            > update #image src
-//          > if true
-//            > add success class to letter
-//            > add letter in textContent of correct .solution-letter
-//    > check if game is over
-//      > all letters found -> game won
-//        > #win-lose-container.textContent -> You won!!
-//      > 8 failed letters -> game lost
-//        > #win-lose-container.textContent -> You lost!! The word was: ...
+function printSolutionLetters(word) {
+  let solutionLettersHTML = '';
 
-// if game over
-//  > click on #win-lose-container for reset
+  for (let i = 0; i < word.length; i++) {
+    solutionLettersHTML += '<div class="solution-letter"></div>';
+  }
+
+  $solutionContainer.innerHTML = solutionLettersHTML;
+}
+
+function clearLetterClasses() {
+  const $letters = $letterContainer.children;
+
+  for (let i = 0; i < $letters.length; i++) {
+    $letters[i].classList.remove('success', 'failed');
+  }
+}
+
+function updateHangmanImage(imageNumber) {
+  $hangManImage.src = 'images/hangman0' + imageNumber + '.png';
+}
+
+function resetGameState() {
+  gameState.hangman = 1;
+  gameState.lettersFound = 0;
+  gameState.won = false;
+  gameState.lost = false;
+  gameState.word = getRandomWord();
+}
+
+function reset() {
+  resetGameState();
+  printSolutionLetters(gameState.word);
+  clearLetterClasses();
+  updateHangmanImage(gameState.hangman);
+  $winLoseContainer.textContent = '';
+}
+
+function findLetter(word, letter) {
+  const letterIndexes = [];
+
+  for (let i = 0; i < word.length; i++) {
+    if (word[i].toLowerCase() === letter.toLowerCase()) {
+      letterIndexes.push(i);
+    }
+  }
+
+  return letterIndexes;
+}
+
+function fillSolutionLetters(letter, letterIndexes) {
+  const $solutionLetters = $solutionContainer.children;
+  for (let i = 0; i < letterIndexes.length; i++) {
+    $solutionLetters[letterIndexes[i]].textContent = letter;
+  }
+}
+
+function onLetterContainerClick(event) {
+  console.log(event.target);
+  if (event.target.matches('.letter:not(.success):not(.failed)')) {
+    const clickedLetter = event.target.dataset.letter;
+    const letterIndexes = findLetter(gameState.word, clickedLetter);
+
+    if (letterIndexes.length === 0) {
+      event.target.classList.add('failed');
+      gameState.hangman++;
+      updateHangmanImage(gameState.hangman);
+    } else {
+      event.target.classList.add('success');
+      gameState.lettersFound += letterIndexes.length;
+      fillSolutionLetters(clickedLetter, letterIndexes);
+    }
+
+    if (gameState.lettersFound === gameState.word.length) {
+      $winLoseContainer.textContent = 'You won, play again?';
+    } else if (gameState.hangman === 9) {
+      $winLoseContainer.textContent =
+        'You lost. The word was ' + gameState.word.join('') + ', try again?';
+    }
+  }
+}
+
+reset();
+
+$letterContainer.addEventListener('click', onLetterContainerClick);
+$winLoseContainer.addEventListener('click', reset);
