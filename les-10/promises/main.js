@@ -20,6 +20,7 @@ let promise = new Promise(function (resolve, reject) {
 promise
   .finally(function () {
     console.log('promise completed');
+    s;
   })
   .then(function (val) {
     console.log(val);
