@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Quizr</title>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"/>
+  <link rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Quizr
+      </h1>
+    </div>
+  </div>
+</section>
+<section class="columns is-gapless">
+  <aside class="column is-one-quarter">
+    <div id="result-container">
+      <div class="result tag is-success is-large">Vraag 01</div>
+      <div class="result tag is-danger is-large">Vraag 02</div>
+      <div class="result tag is-dark is-large">Vraag 03</div>
+      <div class="result tag is-dark is-large">Vraag 04</div>
+      <div class="result tag is-dark is-large">Vraag 05</div>
+      <div class="result tag is-dark is-large">Vraag 06</div>
+      <div class="result tag is-dark is-large">Vraag 07</div>
+      <div class="result tag is-dark is-large">Vraag 08</div>
+      <div class="result tag is-dark is-large">Vraag 09</div>
+      <div class="result tag is-dark is-large">Vraag 10</div>
+    </div>
+    <div id="total-container">
+      <span id="total-correct">1</span>/10
+    </div>
+  </aside>
+  <main class="column">
+    <div id="question-container">
+      <div id="question" data-index="5">
+        Een vraag om te testen zo kan ik zien waar alles thuishoort?
+      </div>
+      <div id="answer-container">
+        <a id="answer-true" class="answer button is-success is-medium">True</a>
+        <a id="answer-false" class="answer button is-danger is-medium">False</a>
+      </div>
+    </div>
+  </main>
+</section>
+<script src="script.js"></script>
+</body>
+</html>
