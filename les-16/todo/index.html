@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TODO or not TODO</title>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"/>
+  <link rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        TODO or not TODO
+      </h1>
+    </div>
+  </div>
+</section>
+<div class="container">
+  <section class="section">
+    <div id="input-container">
+      <div class="field">
+        <div class="control">
+          <textarea id="todo-input" class="textarea is-success" placeholder="What to do?"></textarea>
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <p class="control is-expanded">
+          <button id="save-btn" class="button is-success is-fullwidth">
+            Save
+          </button>
+        </p>
+        <p class="control">
+          <button id="clear-all-btn" class="button is-danger">
+            Clear All
+          </button>
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="count-container">
+    Todo: <span id="todo-count">5</span>
+  </section>
+  <section id="todo-list" class="section no-top-padding">
+    <div class="box active">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad aliquam debitis
+        dolores eos excepturi iusto libero, magnam nulla pariatur provident quibusdam quod,
+        repellendus. A illum laudantium quas reprehenderit voluptas?</p>
+      <a class="done-btn fas fa-check-circle fa-2x"></a>
+    </div>
+    <div class="box">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad aliquam debitis
+        dolores eos excepturi iusto libero, magnam nulla pariatur provident quibusdam quod,
+        repellendus. A illum laudantium quas reprehenderit voluptas?</p>
+      <a class="done-btn fas fa-check-circle fa-2x"></a>
+    </div>
+    <div class="box">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad aliquam debitis
+        dolores eos excepturi iusto libero, magnam nulla pariatur provident quibusdam quod,
+        repellendus. A illum laudantium quas reprehenderit voluptas?</p>
+      <a class="done-btn fas fa-check-circle fa-2x"></a>
+    </div>
+  </section>
+  <section class="count-container">
+    Done: <span id="done-count">5</span>
+  </section>
+  <section id="done-list" class="section no-top-padding">
+    <div class="box">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad aliquam debitis
+        dolores eos excepturi iusto libero, magnam nulla pariatur provident quibusdam quod,
+        repellendus. A illum laudantium quas reprehenderit voluptas?</p>
+      <a class="remove-btn fas fa-times-circle fa-2x"></a>
+    </div>
+  </section>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
