@@ -84,10 +84,16 @@ function deleteFromState(id, done) {
 }
 
 function setState() {
+  $todoList.classList.add('loading');
+  $doneList.classList.add('loading');
+  printTodoList();
+  printDoneList();
+
   fetchTodo(false)
     .then(function (body) {
       state.todoList = body.data;
       printTodoList();
+      $todoList.classList.remove('loading');
     })
     .catch((err) => {
       console.error(err);
@@ -97,6 +103,7 @@ function setState() {
     .then(function (body) {
       state.doneList = body.data;
       printDoneList();
+      $doneList.classList.remove('loading');
     })
     .catch((err) => {
       console.error(err);
@@ -136,13 +143,22 @@ function printDoneList() {
 }
 
 function saveBtnClicked() {
+  if (!$textArea.value) {
+    return;
+  }
+
   const body = {
     description: $textArea.value,
     done: false,
   };
+
+  $saveBtn.classList.add('loading');
+
   saveTodo(body)
     .then(function (body) {
       state.todoList.push(body.data);
+      $saveBtn.classList.remove('loading');
+      $textArea.value = '';
       printTodoList();
     })
     .catch((err) => {
@@ -154,14 +170,18 @@ function todoListClicked(event) {
   const $target = event.target;
 
   if ($target.matches('.done-btn')) {
-    const curId = $target.closest('.box').dataset.index;
+    const $box = $target.closest('.box');
+    const curId = $box.dataset.index;
     const body = {
       done: true,
     };
 
+    $box.classList.add('loading');
+
     saveTodo(body, curId)
       .then(function (response) {
         deleteFromState(response.data.id, false);
+        $box.classList.remove('loading');
         printTodoList();
         state.doneList.push(response.data);
         printDoneList();
@@ -183,7 +203,10 @@ function doneListClicked(event) {
   const $target = event.target;
 
   if ($target.matches('.remove-btn')) {
+    const $box = $target.closest('.box');
     const curId = $target.dataset.index;
+
+    $box.classList.add('loading');
 
     deleteTodo(curId)
       .then(function () {
